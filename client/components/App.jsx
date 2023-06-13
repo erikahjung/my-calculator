@@ -1,11 +1,14 @@
 import React, { useState } from 'react';
 import { Display } from './Display.jsx';
-import { Button } from './Button.jsx';
+import { Keypad } from './Keypad.jsx';
 
 const App = () => {
+  //only display numbers like an analog calculator - BUG: each digit only displays 1 at a time (ex. 100)
   const [display, setDisplay] = useState('0');
+  //the mathematical expression is a string
   const [calculation, setCalculation] = useState('');
 
+  //calculate the mathematical expression or clear if it's invalid
   const calculate = () => {
     try {
       const total = eval(calculation);
@@ -13,6 +16,8 @@ const App = () => {
       setCalculation(String(total));
     } catch (e) {
       console.log(e);
+      setDisplay('0');
+      setCalculation('');
     }
   }
 
@@ -32,7 +37,6 @@ const App = () => {
         break;
       case '=':
         calculate();
-        setCalculation('');
         break;
       case 'C':
         setDisplay('0');
@@ -42,29 +46,13 @@ const App = () => {
         setDisplay(e.target.value);
         setCalculation((x) => x + e.target.value);
     }
-    console.log(calculation);
   }
 
   return (
     <>
       <h1>My Calculator</h1>
       <Display number={display}></Display>
-      <Button symbol='1' onClick={onClick}></Button>
-      <Button symbol='2' onClick={onClick}></Button>
-      <Button symbol='3' onClick={onClick}></Button>
-      <Button symbol='4' onClick={onClick}></Button>
-      <Button symbol='5' onClick={onClick}></Button>
-      <Button symbol='6' onClick={onClick}></Button>
-      <Button symbol='7' onClick={onClick}></Button>
-      <Button symbol='8' onClick={onClick}></Button>
-      <Button symbol='9' onClick={onClick}></Button>
-      <Button symbol='0' onClick={onClick}></Button>
-      <Button symbol='+' onClick={onClick}></Button>
-      <Button symbol='-' onClick={onClick}></Button>
-      <Button symbol='/' onClick={onClick}></Button>
-      <Button symbol='*' onClick={onClick}></Button>
-      <Button symbol='=' onClick={onClick}></Button>
-      <Button symbol='C' onClick={onClick}></Button>
+      <Keypad onClick={onClick}></Keypad>
     </>
   )
 }

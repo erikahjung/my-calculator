@@ -2,6 +2,8 @@ import React from "react";
 
 export const Display = ({ number }) => {
   return (
-    <p>{number}</p>
+    <div id='display'>
+      <p>{number}</p>
+    </div>
   )
 }
