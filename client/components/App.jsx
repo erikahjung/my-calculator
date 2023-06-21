@@ -24,15 +24,19 @@ const App = () => {
   const onClick = (e) => {
     switch (e.target.value) {
       case '+': 
+        setDisplay('0');
         setCalculation((x) => x + '+');
         break;
       case '-':
+        setDisplay('0');
         setCalculation((x) => x + '-');
         break;
       case '/':
+        setDisplay('0');
         setCalculation((x) => x + '/');
         break;
       case '*':
+        setDisplay('0');
         setCalculation((x) => x + '*');
         break;
       case '=':
@@ -43,7 +47,7 @@ const App = () => {
         setCalculation('');
         break;
       default:
-        setDisplay(e.target.value);
+        setDisplay((num) => num === '0' ? e.target.value : num + e.target.value);
         setCalculation((x) => x + e.target.value);
     }
   }
