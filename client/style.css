@@ -1,3 +1,43 @@
 h1 {
   color: red;
 }
+
+#root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#display {
+  display: flex;
+  justify-content: end;
+  background-color: darkgray;
+  height: 75x;
+  width: 400px;
+  margin: 10px;
+  border: 0.25px solid black;
+}
+
+p {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
+@media only screen and (max-width: 400px) {
+  #display {
+    width: 100%;
+  }
+}
+
+#keypad {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(25px, 100px));
+  grid-template-rows: repeat(4, minmax(25px, 100px));
+  place-items: stretch;
+  place-content: stretch;
+  /* height: minmax() */
+}
+
+button {
+  font-size: 24px;
+}
